@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func main() {
+func setupRouter() *gin.Engine {
 	router := gin.Default()
 
 	router.GET("/GetEndpoint", func(c *gin.Context) {
@@ -23,5 +23,10 @@ func main() {
 		c.String(http.StatusOK, "Placeholder response (Delete)")
 	})
 
+	return router
+}
+
+func main() {
+	router := setupRouter()
 	router.Run()
 }
