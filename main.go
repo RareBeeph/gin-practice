@@ -10,16 +10,16 @@ import (
 func setupRouter() *gin.Engine {
 	router := gin.Default()
 
-	router.GET("/GetEndpoint", func(c *gin.Context) {
+	router.GET("/getendpoint", func(c *gin.Context) {
 		c.String(http.StatusOK, "Placeholder response (Get)")
 	})
 
-	router.POST("/PostEndpoint", func(c *gin.Context) {
+	router.POST("/postendpoint", func(c *gin.Context) {
 		postData, _ := io.ReadAll(c.Request.Body)
-		c.String(http.StatusOK, (string)(postData)) // Placeholder response: return raw data received
+		c.Data(http.StatusOK, c.Request.Header.Get("content-type"), postData) // Placeholder response: return raw data received
 	})
 
-	router.DELETE("/DeleteEndpoint", func(c *gin.Context) {
+	router.DELETE("/deleteendpoint", func(c *gin.Context) {
 		c.String(http.StatusOK, "Placeholder response (Delete)")
 	})
 
